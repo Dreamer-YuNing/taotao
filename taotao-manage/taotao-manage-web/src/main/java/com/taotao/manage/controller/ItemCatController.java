@@ -33,7 +33,6 @@ public class ItemCatController {
         ItemCat itemCat = new ItemCat();
         itemCat.setParentId(parentId);
         List<ItemCat> itemCats = this.itemCatService.queryListByWhere(itemCat);
-        System.out.println("进入了这个方法");
         try {
             if (itemCats == null || itemCats.isEmpty()) {
                 //404
