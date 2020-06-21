@@ -30,10 +30,18 @@
         <joda-time.version>2.5</joda-time.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-io.version>1.3.2</commons-io.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <joda-time.version>2.5</joda-time.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- 文件上传-->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
             <!-- 单元测试 -->
             <dependency>
                 <groupId>junit</groupId>
