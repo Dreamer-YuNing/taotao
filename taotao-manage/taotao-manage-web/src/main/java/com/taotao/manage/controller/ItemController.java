@@ -27,6 +27,12 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    /**
+     * 新增item
+     * @param item
+     * @param desc
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> saveItem(Item item, @RequestParam("desc") String desc) {
         try {
@@ -44,6 +50,12 @@ public class ItemController {
         }
     }
 
+    /**
+     * 按item先后顺序,分页查询item
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ResponseEntity<EasyUIResult> queryItemList(@RequestParam(value = "page", defaultValue = "1") Integer pageNum,
                                                       @RequestParam(value = "rows", defaultValue = "30") Integer pageSize) {
@@ -64,6 +76,23 @@ public class ItemController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateItem(Item item, @RequestParam("desc") String desc) {
+        try {
+            if (StringUtils.isEmpty(item.getTitle())) {
+                //400
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+            this.itemService.updateItem(item, desc);
+            //修改成功,204
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //500
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

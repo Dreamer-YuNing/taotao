@@ -24,13 +24,21 @@ public class ItemService extends BaseService<Item> {
     public void saveItem(Item item,String desc){
         item.setStatus(1);
         item.setId(null);
-        System.out.println(item.getId());
         super.save(item);
-        System.out.println(item.getId());
         //创建itemDesc对象 封装desc和来自item中的id到该对象,再通过service的save存储
         ItemDesc itemDesc = new ItemDesc();
         itemDesc.setItemId(item.getId());
         itemDesc.setItemDesc(desc);
         this.itemDescService.save(itemDesc);
+    }
+
+    public void updateItem(Item item, String desc) {
+
+        super.updateByPrimaryKey(item);
+        //创建itemDesc对象 封装desc和来自item中的id到该对象,再通过service的save存储
+        ItemDesc itemDesc = new ItemDesc();
+        itemDesc.setItemId(item.getId());
+        itemDesc.setItemDesc(desc);
+        this.itemDescService.updateByPrimaryKey(itemDesc);
     }
 }

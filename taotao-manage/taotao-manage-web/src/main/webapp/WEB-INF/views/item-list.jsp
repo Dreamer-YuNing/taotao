@@ -61,17 +61,7 @@
                     data.priceView = TAOTAO.formatPrice(data.price);
                     $("#itemeEditForm").form("load", data);
 
-                    //回显商品种类
-                    $.getJSON('/rest/item/cat/'+data.cid,function(item_c){
-                        TAOTAO.init({
-                            "pics" : data.image,
-                            "cid" : item_c.id,
-                            "cname":item_c.name,
-                            fun:function(node){
-                                TAOTAO.changeItemParam(node, "itemeEditForm");
-                            }
-                        });
-                    });
+
 
                     // 加载商品描述
                     $.getJSON('/rest/item/desc/' + data.id, function (_data) {
@@ -118,12 +108,16 @@
                         }
                     });
 
-                    TAOTAO.init({
-                        "pics": data.image,
-                        "cid": data.cid,
-                        fun: function (node) {
-                            TAOTAO.changeItemParam(node, "itemeEditForm");
-                        }
+                    //回显商品种类和图片
+                    $.getJSON('/rest/item/cat/'+data.cid,function(item_c){
+                        TAOTAO.init({
+                            "pics" : data.image,
+                            "cid" : item_c.id,
+                            "cname":item_c.name,
+                            fun:function(node){
+                                TAOTAO.changeItemParam(node, "itemeEditForm");
+                            }
+                        });
                     });
                 }
             }).window("open");

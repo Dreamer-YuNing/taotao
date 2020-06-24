@@ -107,7 +107,7 @@ public class BaseService<T extends BasePojo> {
      */
     public Boolean updateByPrimaryKey(T record) {
         record.setUpdated(new Date());
-        return this.mapper.updateByPrimaryKey(record) == 1;
+        return this.mapper.updateByPrimaryKeySelective(record) == 1;
     }
 
     /**
