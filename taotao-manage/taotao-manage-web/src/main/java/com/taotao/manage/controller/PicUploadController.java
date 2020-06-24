@@ -35,7 +35,6 @@ public class PicUploadController {
     private PropertiesService propertiesService;
 
 
-
     private static final Logger LOGGER = LoggerFactory.getLogger(PicUploadController.class);
 
     // JacksonJson中的序列化工具

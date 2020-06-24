@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +30,7 @@ public class ItemCatController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<ItemCat>> queryItem(@RequestParam(value = "id", defaultValue = "0") Long parentId) {
+    public ResponseEntity<List<ItemCat>> queryItemCat(@RequestParam(value = "id", defaultValue = "0") Long parentId) {
         ItemCat itemCat = new ItemCat();
         itemCat.setParentId(parentId);
         List<ItemCat> itemCats = this.itemCatService.queryListByWhere(itemCat);
@@ -43,5 +44,27 @@ public class ItemCatController {
             e.printStackTrace();
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+
+    /**
+     * 根据id查询ItemCat
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "{id}",method = RequestMethod.GET)
+    public ResponseEntity<ItemCat> queryItemById(@PathVariable("id")Long id){
+        try {
+            ItemCat itemCat = this.itemCatService.queryById(id);
+            if (itemCat == null) {
+                //返回404
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            //返回200
+            return ResponseEntity.ok(itemCat);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //返回500
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }

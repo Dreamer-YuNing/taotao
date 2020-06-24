@@ -16,7 +16,6 @@ import java.util.List;
 public class BaseService<T extends BasePojo> {
     @Autowired
     public Mapper<T> mapper;
-
     /**
      * 参数为null,查询所有
      *
@@ -68,6 +67,23 @@ public class BaseService<T extends BasePojo> {
     public PageInfo<T> queryPageListByWhere(Integer pageNum, Integer pageSize, T record) {
         PageHelper.startPage(pageNum, pageSize);
         List<T> list = this.mapper.select(record);
+        return new PageInfo<T>(list);
+    }
+
+    /**
+     * 分页查询(含排序)
+     * @param orderByClause
+     * @param pageNum
+     * @param pageSize
+     * @param record
+     * @return
+     */
+    public PageInfo<T> queryPageListByWhere(String orderByClause,Integer pageNum, Integer pageSize, T record) {
+
+        PageHelper.startPage(pageNum, pageSize);
+        Example example = new Example(record.getClass());
+        example.setOrderByClause(orderByClause);
+        List<T> list = this.mapper.selectByExample(example);
         return new PageInfo<T>(list);
     }
 
