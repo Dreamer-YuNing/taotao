@@ -32,6 +32,11 @@ public class ItemService extends BaseService<Item> {
         this.itemDescService.save(itemDesc);
     }
 
+    /**
+     * 编辑商品
+     * @param item
+     * @param desc
+     */
     public void updateItem(Item item, String desc) {
 
         super.updateByPrimaryKey(item);
