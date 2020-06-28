@@ -1,4 +1,4 @@
-package com.taotao.manage.pojo;
+package com.taotao.common.bean;
 
 /**
  * Created by ning_ on 2020/6/21.

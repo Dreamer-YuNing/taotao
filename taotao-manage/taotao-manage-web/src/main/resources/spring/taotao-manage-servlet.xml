@@ -12,8 +12,18 @@
     <context:component-scan base-package="com.taotao.manage.controller"/>
 
     <!-- 注解驱动 -->
-    <mvc:annotation-driven/>
-
+    <mvc:annotation-driven>
+        <!-- register-defaults属性是  是否注册成默认  ，不想设置为默认直接改成false即可
+             spring默认有一个StringConverter,我们又定义了一个，spring容器中就有了2个字符转换器，
+             运行时究竟会使用哪一个呢？  ===>  spring有默认规则，自定义的优先
+         -->
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <!--  指定构造参数 -->
+                <constructor-arg index="0" value="UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!-- 配置视图解析器 -->
     <!--
