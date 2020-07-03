@@ -1,6 +1,7 @@
 package com.taotao.manage.mapper;
 
 import com.github.abel533.mapper.Mapper;
+import com.taotao.manage.pojo.ContentCategory;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * Created by ning_ on 2020/6/28.
  */
 @Repository
-public interface ContentCategoryMapper extends Mapper<ContentCategoryMapper> {
+public interface ContentCategoryMapper extends Mapper<ContentCategory> {
 }

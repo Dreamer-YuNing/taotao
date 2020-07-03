@@ -57,7 +57,7 @@ public class BaseService<T extends BasePojo> {
     }
 
     /**
-     * 分页查询
+     * 根据条件分页查询
      *
      * @param pageNum
      * @param pageSize

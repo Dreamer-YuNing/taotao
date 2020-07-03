@@ -1,4 +1,4 @@
-package com.taotao.manage.controller;
+package com.taotao.manage.controller.api;
 
 import com.github.pagehelper.PageInfo;
 import com.taotao.common.bean.EasyUIResult;
@@ -12,44 +12,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
- * Created by ning_ on 2020/6/28.
+ * manage工程的对外应用接口
+ * Created by ning_ on 2020/7/2.
  */
 @Controller
-@RequestMapping("content")
-public class ContentController {
+@RequestMapping("api/content")
+public class ApiContentController {
     @Autowired
     private ContentService contentService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> saveContent(Content content) {
-        try {
-            this.contentService.save(content);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
     /**
-     * 根据categoryId分页查询content
+     * 根据categoryId查询
      * @param categoryId
      * @param page
      * @param rows
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<EasyUIResult> queryContentByCategoryId(@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
-                                                                 @RequestParam(value = "page", defaultValue = "0") Integer page,
-                                                                 @RequestParam(value = "rows", defaultValue = "0") Integer rows) {
+    public ResponseEntity<List<Content>> queryContentByCategoryId(@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
+                                                                  @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                                                  @RequestParam(value = "rows", defaultValue = "30") Integer rows) {
         try {
             Content record = new Content();
             record.setCategoryId(categoryId);
             PageInfo<Content> pageInfo = this.contentService.queryPageListByWhere(page, rows, record);
-            EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(),pageInfo.getList());
-            //200
-            return ResponseEntity.ok(easyUIResult);
+            if (pageInfo != null && pageInfo.getSize() != 0) {
+                //200
+                return ResponseEntity.ok(pageInfo.getList());
+            }
+            //204
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception e) {
             e.printStackTrace();
             //500
