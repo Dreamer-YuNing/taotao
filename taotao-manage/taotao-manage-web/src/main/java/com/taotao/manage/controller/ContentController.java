@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by ning_ on 2020/6/28.
  */
@@ -21,6 +25,12 @@ public class ContentController {
     @Autowired
     private ContentService contentService;
 
+    /**
+     * 新增内容
+     *
+     * @param content
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> saveContent(Content content) {
         try {
@@ -33,7 +43,29 @@ public class ContentController {
     }
 
     /**
+     * 编辑更新内容
+     *
+     * @param content
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Void> editContent(Content content) {
+        try {
+            this.contentService.updateByPrimaryKey(content);
+            //204
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //500
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+
+    /**
      * 根据categoryId分页查询content
+     *
      * @param categoryId
      * @param page
      * @param rows
@@ -47,7 +79,7 @@ public class ContentController {
             Content record = new Content();
             record.setCategoryId(categoryId);
             PageInfo<Content> pageInfo = this.contentService.queryPageListByWhere(page, rows, record);
-            EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(),pageInfo.getList());
+            EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
             //200
             return ResponseEntity.ok(easyUIResult);
         } catch (Exception e) {

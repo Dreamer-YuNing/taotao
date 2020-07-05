@@ -11,6 +11,7 @@
 
     <groupId>com.taotao.manage</groupId>
     <artifactId>taotao-manage-pojo</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>

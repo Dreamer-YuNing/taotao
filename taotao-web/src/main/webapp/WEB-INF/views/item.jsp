@@ -12,6 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/pshow.css" media="all" />
 	<script type="text/javascript">
     	window.pageConfig = {
+
+
 			compatible: true,
        		product: {
 				skuid: ${item.id},

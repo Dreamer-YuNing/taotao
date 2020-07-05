@@ -12,4 +12,6 @@ import org.springframework.stereotype.Service;
 public class ContentService extends BaseService<Content>{
     @Autowired
     private ContentMapper mapper;
+
+
 }

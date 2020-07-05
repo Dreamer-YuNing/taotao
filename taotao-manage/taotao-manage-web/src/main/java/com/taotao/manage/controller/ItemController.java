@@ -78,6 +78,12 @@ public class ItemController {
 
     }
 
+    /**
+     * 更新
+     * @param item
+     * @param desc
+     * @return
+     */
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Void> updateItem(Item item, @RequestParam("desc") String desc) {
         try {

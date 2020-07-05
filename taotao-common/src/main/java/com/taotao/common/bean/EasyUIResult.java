@@ -6,11 +6,11 @@ import java.util.List;
  * Created by ning_ on 2020/6/23.
  * 没有对应的实体类,是为了封装前端的分页查询结果集
  */
-public class EasyUIResult {
+public class EasyUIResult<T> {
     private Long total;
-    private List<?> rows;
+    private List<T> rows;
 
-    public EasyUIResult(Long total, List<?> rows) {
+    public EasyUIResult(Long total, List<T> rows) {
         this.total = total;
         this.rows = rows;
     }
@@ -23,11 +23,11 @@ public class EasyUIResult {
         this.total = total;
     }
 
-    public List<?> getRows() {
+    public List<T> getRows() {
         return rows;
     }
 
-    public void setRows(List<?> rows) {
+    public void setRows(List<T> rows) {
         this.rows = rows;
     }
 }
