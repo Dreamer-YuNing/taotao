@@ -1,4 +1,4 @@
-package com.taotao.manage.service;
+package com.taotao.common.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +11,8 @@ import redis.clients.jedis.ShardedJedisPool;
  */
 @Service
 public class RedisService {
-    //注入分片连接池
-    @Autowired
+    //注入分片连接池 设置required = false 这样就可以按需加载
+    @Autowired(required = false)
     private ShardedJedisPool pool;
 
     /**

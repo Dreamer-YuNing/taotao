@@ -2,14 +2,13 @@ package com.taotao.manage.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.abel533.mapper.Mapper;
+import com.taotao.common.service.RedisService;
 import com.taotao.manage.pojo.ItemDesc;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by ning_ on 2020/6/20.
