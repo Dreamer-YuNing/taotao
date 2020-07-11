@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 封装httpClient,完成对后台的跨域访问
  * Created by ning_ on 2020/7/3.
  */
 @Service
