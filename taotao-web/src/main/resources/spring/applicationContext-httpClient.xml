@@ -42,7 +42,7 @@
     <bean factory-bean="httpClientBuilder" factory-method="build"></bean>
 
     <!--注册定时清理无效链接的任务-->
-    <bean class="com.taotao.web.httpclient.IdleConnectionEvictor" destroy-method="shutdown">
+    <bean class="com.taotao.common.httpclient.IdleConnectionEvictor" destroy-method="shutdown">
         <!--通过构造函数 注入连接池管理器-->
         <constructor-arg index="0" ref="httpClientConnectionManager"/>
     </bean>

@@ -1,4 +1,4 @@
-package com.taotao.web.service;
+package com.taotao.common.service;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;

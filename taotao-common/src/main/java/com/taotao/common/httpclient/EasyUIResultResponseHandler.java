@@ -1,4 +1,4 @@
-package com.taotao.web.httpclient;
+package com.taotao.common.httpclient;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
