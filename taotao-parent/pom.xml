@@ -39,7 +39,7 @@
         <mapper.version>2.3.4</mapper.version>
         <pagehelper.version>3.7.5</pagehelper.version>
         <jsqlparser.version>0.9.1</jsqlparser.version>
-        <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
+        <hibernate-validator.version>5.3.5.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
