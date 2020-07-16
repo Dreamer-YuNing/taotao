@@ -39,6 +39,7 @@
         <mapper.version>2.3.4</mapper.version>
         <pagehelper.version>3.7.5</pagehelper.version>
         <jsqlparser.version>0.9.1</jsqlparser.version>
+        <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
@@ -194,6 +195,13 @@
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
             </dependency>
+            <!-- 数据校验 -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

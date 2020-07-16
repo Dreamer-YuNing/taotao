@@ -1,5 +1,4 @@
 package com.taotao.sso.pojo;
-
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -7,23 +6,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Table(name = "tb_user")
+@Table(name="tb_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Length(min=6,max=20,message="用户名长度必须在6--20之间")
     private String username;
-
     //User对象转json时忽略该字段
     @JsonIgnore
+    @Length(min=6,max=20,message="密码长度必须在6--20之间")
     private String password;
-
+    @Length(min=11,max=11,message="手机号长度必须是11位")
     private String phone;
-
+    @Email(message="邮箱格式不合法")
     private String email;
 
     private Date created;
@@ -96,6 +97,7 @@ public class User {
                 + password + ", phone=" + phone + ", email=" + email
                 + ", created=" + created + ", updated=" + updated + "]";
     }
+
 
 
 }
