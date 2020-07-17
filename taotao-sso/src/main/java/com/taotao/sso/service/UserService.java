@@ -82,4 +82,20 @@ public class UserService {
         this.redisService.set("TOKEN_"+token,MAPPER.writeValueAsString(user),1800);
         return token;
     }
+
+    public User queryByToken(String token) {
+        String key = "TOKEN_"+token;
+        String jsonData = this.redisService.get(key);
+        if(StringUtils.isEmpty(jsonData)){
+            return null;
+        }
+        try {
+            //刷新缓存存活时间
+            redisService.expire(key,1800);
+            return MAPPER.readValue(jsonData,User.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

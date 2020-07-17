@@ -134,4 +134,26 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(TaotaoResult.build(500,"服务器错误"));
         }
     }
+
+    /**
+     * 根据token在redis查询是否登录
+     * @param token
+     * @return
+     */
+    @RequestMapping(value = "{token}",method = RequestMethod.GET)
+    public ResponseEntity<User> queryByToken(@PathVariable("token")String token){
+        try {
+            User user = this.userService.queryByToken(token);
+            if (user == null) {
+                //说明登录超时,返回404
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //返回500
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
+    }
 }
