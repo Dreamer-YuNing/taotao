@@ -2,11 +2,11 @@ package com.taotao.store.order.service;
 
 import java.util.Date;
 
+import com.taotao.common.bean.TaotaoResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.taotao.store.order.bean.TaotaoResult;
 import com.taotao.store.order.dao.IOrder;
 import com.taotao.store.order.pojo.Order;
 import com.taotao.store.order.pojo.PageResult;

@@ -1,5 +1,6 @@
 package com.taotao.store.order.controller;
 
+import com.taotao.common.bean.TaotaoResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.taotao.store.order.bean.TaotaoResult;
+
 import com.taotao.store.order.pojo.Order;
 import com.taotao.store.order.pojo.PageResult;
 import com.taotao.store.order.pojo.ResultMsg;

@@ -1,4 +1,4 @@
-package com.taotao.store.order.bean;
+package com.taotao.common.bean;
 
 import java.util.List;
 
