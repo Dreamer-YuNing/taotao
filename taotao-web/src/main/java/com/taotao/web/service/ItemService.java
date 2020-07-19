@@ -74,6 +74,9 @@ public class ItemService {
         try {
             String uri = MANAGE_TAOTAO_BASE_URL + ITEM_PATH.replace("{itemId}", itemId.toString());
             String json = apiService.doGet(uri, new BasicResponseHandler());
+            if (json == null) {
+                return null;
+            }
             try {
                 //将从后台查询到的数据放入前台redis
                 redisService.set(redisKey, MAPPER.writeValueAsString(json), REDIS_ITEM_TIME);

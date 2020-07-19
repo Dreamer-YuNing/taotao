@@ -28,6 +28,12 @@ public class ItemController {
     @RequestMapping(value = "{itemId}")
     public ModelAndView queryItemById(@PathVariable("itemId") Long itemId) {
         ItemVO itemVO = this.itemService.queryItemVOById(itemId);
+        //未查询到404
+        if (itemVO == null) {
+            ModelAndView mv = new ModelAndView("my-exception");
+            mv.addObject("error","404 商品不存在");
+            return mv;
+        }
         ItemDesc itemDesc = this.itemService.queryItemDescById(itemId);
         ModelAndView mv = new ModelAndView("item");
         mv.addObject("item", itemVO);

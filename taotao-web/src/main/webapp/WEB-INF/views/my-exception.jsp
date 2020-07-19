@@ -7,6 +7,7 @@
 <title>My-Exception</title>
 </head>
 <body>
-	<h1>My-Exception</h1>
+
+	<h1>${error}</h1>
 </body>
 </html>
