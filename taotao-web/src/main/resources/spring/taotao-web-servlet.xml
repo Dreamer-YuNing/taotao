@@ -13,6 +13,16 @@
     <!-- 注解驱动 -->
     <mvc:annotation-driven/>
 
+    <!--配置登录拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截所有请求 -->
+            <mvc:mapping path="/**"/>
+            <!-- 自定义拦截器的全路径 -->
+            <bean class="com.taotao.web.controller.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
     <!-- 配置视图解析器 -->
     <!--
         Example: prefix="/WEB-INF/jsp/", suffix=".jsp", viewname="test" -> "/WEB-INF/jsp/test.jsp"
