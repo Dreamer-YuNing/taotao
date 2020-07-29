@@ -2,12 +2,14 @@ package com.taotao.common.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 淘淘商城自定义响应结构
  */
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"ok"})
 public class TaotaoResult {
 
     // 定义jackson对象

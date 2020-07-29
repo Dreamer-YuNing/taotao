@@ -1,6 +1,5 @@
 package com.taotao.web.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.taotao.common.service.ApiService;
 import com.taotao.common.service.RedisService;
@@ -79,8 +78,8 @@ public class ItemService {
             }
             try {
                 //将从后台查询到的数据放入前台redis
-                redisService.set(redisKey, MAPPER.writeValueAsString(json), REDIS_ITEM_TIME);
-            } catch (JsonProcessingException e) {
+                redisService.set(redisKey, json, REDIS_ITEM_TIME);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             //返回给controller

@@ -10,8 +10,27 @@
     <!-- 扫描包 -->
     <context:component-scan base-package="com.taotao.web.controller"/>
 
-    <!-- 注解驱动 -->
-    <mvc:annotation-driven/>
+    <!-- 注解驱动 content-negotiation-manager：注册一个自定义的ContentNegotiationManager-->
+    <mvc:annotation-driven content-negotiation-manager="negotiationManager">
+
+        <!-- register-defaults属性是  是否注册成默认  ，不想设置为默认直接改成false即可
+             spring默认有一个StringConverter,我们又定义了一个，spring容器中就有了2个字符转换器，
+             运行时究竟会使用哪一个呢？  ===>  spring有默认规则，自定义的优先
+         -->
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <!--  指定构造参数 -->
+                <constructor-arg index="0" value="UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+
+    </mvc:annotation-driven>
+
+    <!-- 自定义的ContentNegotiationManager -->
+    <bean id="negotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <!-- false：不根据请求路径后缀判断响应类型，会取消默认的ServletPathContentNegotiationStrategy -->
+        <property name="favorPathExtension" value="false"/>
+    </bean>
 
     <!--配置登录拦截器-->
     <mvc:interceptors>

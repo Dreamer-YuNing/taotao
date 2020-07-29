@@ -1,5 +1,7 @@
 package com.taotao.manage.controller.api;
 
+import com.github.pagehelper.PageInfo;
+import com.taotao.common.bean.EasyUIResult;
 import com.taotao.manage.pojo.Item;
 import com.taotao.manage.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +39,33 @@ public class ApiItemController {
             //500
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    /**
+     * 按item先后顺序,分页查询item
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ResponseEntity<EasyUIResult> queryItemList(@RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+                                                      @RequestParam(value = "rows", defaultValue = "30") Integer pageSize) {
+        Item record = new Item();
+        record.setStatus(1);
+        try {
+            PageInfo<Item> pageInfo = this.itemService.queryPageListByWhere("updated desc", pageNum, pageSize, record);
+            if(pageInfo==null||pageInfo.getSize()==0){
+                //404
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            EasyUIResult result = new EasyUIResult(pageInfo.getTotal(),pageInfo.getList());
+            //200
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //500
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
     }
 }

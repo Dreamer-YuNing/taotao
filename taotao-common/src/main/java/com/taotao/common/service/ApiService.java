@@ -1,5 +1,6 @@
 package com.taotao.common.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ResponseHandler;
@@ -7,6 +8,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -80,6 +83,25 @@ public class ApiService {
             // 将请求实体设置到httpPost对象中
             httpPost.setEntity(formEntity);
         }
+        return httpClient.execute(httpPost, handler);
+    }
+
+    /**
+     * 有参POST请求 返回json
+     */
+    public <T> T doPostJson(String uri, String json, ResponseHandler<T> handler)
+            throws ParseException, IOException {
+        // 判断是否有响应处理器，如果没有，用默认的
+        handler = handler == null ? (ResponseHandler<T>) defaultHandler : handler;
+        // 创建http POST请求
+        HttpPost httpPost = new HttpPost(uri);
+        if (StringUtils.isNotEmpty(json)) {
+             //构造一个json格式的实体
+            StringEntity formEntity = new StringEntity(json, ContentType.APPLICATION_JSON);
+            //将请求实体设置到httpPost中去
+            httpPost.setEntity(formEntity);
+        }
+
         return httpClient.execute(httpPost, handler);
     }
 

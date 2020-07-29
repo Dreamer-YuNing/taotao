@@ -3,7 +3,7 @@ package com.taotao.manage.pojo;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "tb_item_desc")
+@Table(name = "tb_item_jd_desc")
 public class ItemDesc extends BasePojo{
     
     @Id//对应tb_item中的id
@@ -27,6 +27,4 @@ public class ItemDesc extends BasePojo{
         this.itemDesc = itemDesc;
     }
     
-    
-
 }

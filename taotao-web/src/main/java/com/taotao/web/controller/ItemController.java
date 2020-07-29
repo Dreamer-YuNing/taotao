@@ -25,7 +25,7 @@ public class ItemController {
      * @param itemId
      * @return
      */
-    @RequestMapping(value = "{itemId}")
+    @RequestMapping(value = "{itemId}",method = RequestMethod.GET)
     public ModelAndView queryItemById(@PathVariable("itemId") Long itemId) {
         ItemVO itemVO = this.itemService.queryItemVOById(itemId);
         //未查询到404
