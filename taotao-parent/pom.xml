@@ -14,6 +14,7 @@
         <module>../taotao-common</module>
         <module>../taotao-sso</module>
         <module>../taotao-order</module>
+        <module>../taotao-search</module>
 
     </modules>
 
@@ -43,10 +44,17 @@
         <jsqlparser.version>0.9.1</jsqlparser.version>
         <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
         <persistence-api.version>1.0.2</persistence-api.version>
+        <solr-solrj.version>4.10.2</solr-solrj.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- Solrj依赖 -->
+            <dependency>
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-solrj</artifactId>
+                <version>${solr-solrj.version}</version>
+            </dependency>
             <!-- 文件上传-->
             <dependency>
                 <groupId>commons-fileupload</groupId>
