@@ -1,4 +1,4 @@
-package pojo;
+package com.taotao.web.pojo;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;

@@ -6,7 +6,7 @@ import com.taotao.web.threadLocal.UserThreadLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import pojo.User;
+import com.taotao.web.pojo.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

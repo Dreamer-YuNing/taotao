@@ -1,4 +1,4 @@
-package pojo;
+package com.taotao.web.pojo;
 
 
 public class OrderItem {

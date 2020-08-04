@@ -1,4 +1,4 @@
-package pojo;
+package com.taotao.web.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;

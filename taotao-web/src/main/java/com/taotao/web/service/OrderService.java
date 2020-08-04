@@ -7,7 +7,7 @@ import com.taotao.common.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import pojo.Order;
+import com.taotao.web.pojo.Order;
 
 import java.io.IOException;
 

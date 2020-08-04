@@ -1,30 +1,32 @@
-package com.taotao.web.service;
+package com.taotao.search.service;
 
 import com.taotao.common.httpclient.SimpleResponseHandler;
 import com.taotao.common.service.ApiService;
+import com.taotao.search.pojo.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.taotao.web.pojo.User;
 
 import java.io.IOException;
 
 /**
- * Created by ning_ on 2020/7/20.
+ * Created by ning_ on 2020/8/4.
  */
 @Service
-public class UserService {
+public class ItemService {
+
+    @Value("${TAOTAO_MANAGE_BASE_PATH}")
+    private String TAOTAO_MANAGE_BASE_PATH;
+
     @Autowired
     private ApiService apiService;
 
-    @Value("${SSO_TAOTAO_BASE_URL}")
-    public String SSO_TAOTAO_BASE_URL;
-
-    public User queryUserByToken(String token) {
-        String uri = SSO_TAOTAO_BASE_URL + "/user/" + token + ".html";
+    public Item queryItemById(Long itemId) {
+        String uri = TAOTAO_MANAGE_BASE_PATH+"/rest/api/item/"+itemId;
         try {
-            User user = this.apiService.doGet(uri, new SimpleResponseHandler<>(User.class));
-            return user;
+            Item item = this.apiService.doGet(uri, new SimpleResponseHandler<>(Item.class));
+            System.out.println(item);
+            return item;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

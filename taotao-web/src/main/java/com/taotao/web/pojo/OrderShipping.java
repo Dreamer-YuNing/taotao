@@ -1,4 +1,4 @@
-package pojo;
+package com.taotao.web.pojo;
 
 import org.hibernate.validator.constraints.Length;
 
