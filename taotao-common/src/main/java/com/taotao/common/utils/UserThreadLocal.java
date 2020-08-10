@@ -1,6 +1,7 @@
-package com.taotao.web.threadLocal;
+package com.taotao.common.utils;
 
-import com.taotao.web.pojo.User;
+
+import com.taotao.common.pojo.User;
 
 /**
  * 保存当前线程的用户信息

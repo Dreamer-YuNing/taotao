@@ -4,7 +4,7 @@ import com.taotao.common.bean.TaotaoResult;
 import com.taotao.web.service.ItemService;
 import com.taotao.web.service.OrderService;
 import com.taotao.web.service.UserService;
-import com.taotao.web.threadLocal.UserThreadLocal;
+import com.taotao.common.utils.UserThreadLocal;
 import com.taotao.web.vo.ItemVO;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.taotao.web.pojo.Order;
-import com.taotao.web.pojo.User;
+import com.taotao.common.pojo.User;
 
 
 /**

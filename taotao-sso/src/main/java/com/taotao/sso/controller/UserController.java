@@ -1,8 +1,8 @@
 package com.taotao.sso.controller;
 
 import com.taotao.common.bean.TaotaoResult;
+import com.taotao.common.pojo.User;
 import com.taotao.common.utils.CookieUtils;
-import com.taotao.sso.pojo.User;
 import com.taotao.sso.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;

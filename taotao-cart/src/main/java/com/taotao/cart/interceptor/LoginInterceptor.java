@@ -1,12 +1,13 @@
-package com.taotao.web.controller.interceptor;
+package com.taotao.cart.interceptor;
 
+import com.taotao.cart.service.UserService;
+import com.taotao.common.pojo.User;
 import com.taotao.common.utils.CookieUtils;
-import com.taotao.web.service.UserService;
 import com.taotao.common.utils.UserThreadLocal;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import com.taotao.common.pojo.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,17 +25,12 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = CookieUtils.getCookieValue(request, COOKIE_NAME);
-        if (token == null) {
-            //response中没有cookie,重定向到登录界面
-            response.sendRedirect(userService.SSO_TAOTAO_BASE_URL + "/user/login.html");
-            return false;
+        //cookie中没有token,返回true
+        if (StringUtils.isEmpty(token)) {
+            return true;
         }
-        User user = this.userService.queryUserByToken(token);
-        if (user==null){
-            response.sendRedirect(userService.SSO_TAOTAO_BASE_URL + "/user/login.html");
-            return false;
-        }
-        //将已经登陆的用户信息保存在当前线程,后面需要user信息可以直接取,不需要再次查询
+        //cookie中有token
+        User user =  this.userService.queryUserByToken(token);
         UserThreadLocal.set(user);
         return true;
     }

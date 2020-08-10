@@ -1,16 +1,16 @@
-package com.taotao.web.service;
+package com.taotao.cart.service;
 
 import com.taotao.common.httpclient.SimpleResponseHandler;
+import com.taotao.common.pojo.User;
 import com.taotao.common.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.taotao.common.pojo.User;
 
 import java.io.IOException;
 
 /**
- * Created by ning_ on 2020/7/20.
+ * Created by ning_ on 2020/8/6.
  */
 @Service
 public class UserService {
