@@ -1,16 +1,20 @@
 package com.taotao.cart.controller;
 
+import com.sun.org.apache.regexp.internal.RE;
 import com.taotao.cart.pojo.Cart;
 import com.taotao.cart.service.CartService;
 import com.taotao.common.pojo.User;
 import com.taotao.common.utils.UserThreadLocal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,5 +67,40 @@ public class CartController {
         }
         mv.addObject("cartList",cartList);
         return mv;
+    }
+
+    /**
+     * 根据itemId和newNum更新购物车的商品数量
+     * @param itemId
+     * @param newNum
+     * @return
+     */
+    @RequestMapping(value = "/update/num/{itemId}/{num}",method = RequestMethod.POST)
+    public ResponseEntity<Void> updateNum(@PathVariable("itemId")Long itemId,@PathVariable("num")Integer newNum){
+        User user = UserThreadLocal.get();
+        if (user == null) {
+            //未登录
+        }else{
+            //登陆
+        this.cartService.updateNum(user.getId(),itemId,newNum);
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    /**
+     * 根据itemId删除购物车的item
+     * @param itemId
+     * @return
+     */
+    @RequestMapping(value = "delete/{itemId}",method = RequestMethod.GET)
+    public String deleteItemFromCart(@PathVariable("itemId")Long itemId){
+        User user = UserThreadLocal.get();
+        if (user == null) {
+            //未登录
+        }else{
+            //登陆
+            this.cartService.deleteItemFromCart(user.getId(),itemId);
+        }
+        return "redirect:/cart/list.html";
     }
 }

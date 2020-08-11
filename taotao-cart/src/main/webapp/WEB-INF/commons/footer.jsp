@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="staticPath" value="Http://static.taotao.com" scope="page"></c:set>
 <div class="w" clstag="homepage|keycount|home2013|37a">
 	<div id="service-2013">
 		<dl class="fore1">

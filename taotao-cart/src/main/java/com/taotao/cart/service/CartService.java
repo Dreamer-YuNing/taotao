@@ -62,4 +62,19 @@ public class CartService {
         //返回List<Cart>
         return this.cartMapper.selectByExample(example);
     }
+
+    public void updateNum(Long useId, Long itemId, Integer newNum) {
+        Cart record = new Cart();
+        record.setNum(newNum);
+        Example example = new Example(Cart.class);
+        example.createCriteria().andEqualTo("userId",useId).andEqualTo("itemId",itemId);
+        this.cartMapper.updateByExampleSelective(record,example);
+    }
+
+    public void deleteItemFromCart(Long userId, Long itemId) {
+        Cart record = new Cart();
+        record.setUserId(userId);
+        record.setItemId(itemId);
+        this.cartMapper.delete(record);
+    }
 }
